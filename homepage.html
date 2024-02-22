@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Home - FloodWise</title>
+    <link rel="icon" href="assets/fw-plain.png" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="path/to/your/favicon.ico"
+      type="image/x-icon"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="styling/font.css" />
+  </head>
+
+  <body
+    style="background-image: url('assets/bg-3.jpg'); background-size: cover"
+  >
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="homepage.html">
+          <img
+            src="assets/fw-plain.png"
+            alt="FloodWise Logo"
+            width="50"
+            height="50"
+            class="navbar-logo"
+          />
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" href="forum.html">Forum</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="feature.html">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="floodmonitor.html"
+                >Flood Monitoring</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="aboutus.html">About Us</a>
+            </li>
+          </ul>
+
+          <form class="d-flex">
+            <button
+              class="btn btn-outline-danger"
+              type="button"
+              id="signoutbutton"
+            >
+              Sign Out
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <!-- First Page -->
+    <div
+      class="container-fluid bg-primary text-white d-flex flex-column align-items-center justify-content-center vh-100"
+      style="
+        background-image: url('assets/bg-flood.jpg');
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+      "
+    >
+      <h2 class="mb-5">Welcome to FLOODWISE</h2>
+
+      <!-- dummy weather mapping -->
+      <div
+        class="weather d-flex justify-content-center align-items-center mb-5"
+      >
+        <img
+          src="assets/weather(dummy).png"
+          alt="weather"
+          class="img-fluid"
+          width="1000"
+        />
+      </div>
+      <!-- end dummy weather mapping -->
+    </div>
+    <!-- end first page -->
+
+    <!-- second page -->
+    <div
+      class="container-fluid"
+      style="
+        background-image: url('assets/bg-2.jpg');
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgb(104, 101, 101);
+      "
+    >
+      <h1>Second Page</h1>
+    </div>
+    <!-- end second page -->
+
+    <!-- footer -->
+    <!-- Footer Section -->
+    <footer class="bg-dark text-light text-center py-2">
+      <p>COPYRIGHT 2024 | FLOODWISE X UTHM | FINAL YEAR STUDENT PROJECT.</p>
+    </footer>
+    <!-- footer end -->
+
+    <!-- Water level info -->
+    <!-- API Mapping -->
+    <!-- 
+    <div id="rain-forecast" class="mb-4">Rain Forecast: <span id="rain-value"></span> mm</div>
+    </div> -->
+
+    <!-- <h2 id="msg"></h2>
+    <h2 id="greet"></h2> -->
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      let userCreds = JSON.parse(sessionStorage.getItem("user-creds"));
+      let userInfo = JSON.parse(sessionStorage.getItem("user-info"));
+
+      let MsgHead = document.getElementById("msg");
+      let GreetHead = document.getElementById("greet");
+      let SignoutBtn = document.getElementById("signoutbutton");
+
+      let Signout = () => {
+        sessionStorage.removeItem("user-creds");
+        sessionStorage.removeItem("user-info");
+        window.location.href = "login.html";
+      };
+
+      let CheckCred = () => {
+        if (!sessionStorage.getItem("user-creds"))
+          window.location.href = "login.html";
+        else {
+          GreetHead.innerText = `Welcome "${userCreds.lastname}!`;
+        }
+      };
+
+      window.addEventListener("load", CheckCred);
+      SignoutBtn.addEventListener("click", Signout);
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Function to fetch weather data from OpenWeatherMap API
+        function fetchWeather(apiKey) {
+          const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=3.1412&lon=101.6865&appid=${apiKey}&units=metric`;
+
+          fetch(apiUrl)
+            .then((response) => response.json())
+            .then((data) => {
+              // Extract relevant weather information
+              const temperature = data.main.temp;
+              const weatherDescription = data.weather[0].description;
+
+              // Display weather information
+              document.getElementById(
+                "msg"
+              ).innerText = `Temperature: ${temperature}°C`;
+              document.getElementById(
+                "greet"
+              ).innerText = `Weather: ${weatherDescription}`;
+            })
+            .catch((error) => {
+              console.error("Error fetching weather data:", error);
+            });
+        }
+
+        // Call fetchWeather with your OpenWeatherMap API key
+        fetchWeather("5ec8c4af2abf629a42c175d2d434c3e3"); // Replace 'YourOpenWeatherMapAPIKey' with your actual API key
+      });
+    </script>
+  </body>
+</html>

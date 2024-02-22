@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FloodWise - Flood Monitor</title>
+    <link rel="icon" href="assets/fw-plain.png" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="path/to/your/favicon.ico"
+      type="image/x-icon"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body
+    style="background-image: url('assets/bg-3.jpg'); background-size: cover"
+  >
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="homepage.html">
+          <img
+            src="assets/fw-plain.png"
+            alt="FloodWise Logo"
+            width="50"
+            height="50"
+            class="navbar-logo"
+          />
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" href="forum.html">Forum</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="feature.html">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="floodmonitor.html"
+                >Flood Monitoring</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="aboutus.html">About Us</a>
+            </li>
+          </ul>
+
+          <form class="d-flex"></form>
+        </div>
+      </div>
+    </nav>
+
+    <!-- end of navbar -->
+
+    <!-- dashboard -->
+    <div class="container mt-5">
+      <div class="card">
+        <div class="card-header bg-warning text-white">
+          <h4 class="mb-0">Water Level Dashboard</h4>
+        </div>
+        <div class="card-body">
+          <!-- Ultrasonic Sensor -->
+          <div class="row mb-4">
+            <div class="col-md-6">
+              <h5 class="card-title">Ultrasonic Sensor</h5>
+              <p class="card-text">Current Water Level: 80 cm</p>
+              <!-- Vertical Progress Bar with cm label -->
+              <div class="progress" style="height: 200px">
+                <div
+                  class="progress-bar bg-success"
+                  role="progressbar"
+                  style="height: 80%"
+                  aria-valuenow="80"
+                  aria-valuemin="0"
+                  aria-valuemax="200"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Water Level Sensor -->
+          <div class="row mb-4">
+            <div class="col-md-6">
+              <h5 class="card-title">Waterlevel Sensor</h5>
+              <p class="card-text">Current Water Level: 80 cm</p>
+              <!-- Vertical Progress Bar with cm label -->
+              <div class="progress" style="height: 200px">
+                <div
+                  class="progress-bar bg-success"
+                  role="progressbar"
+                  style="height: 80%"
+                  aria-valuenow="80"
+                  aria-valuemin="0"
+                  aria-valuemax="200"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Water Level History -->
+          <div class="row">
+            <div class="col-md-12">
+              <h5 class="card-title">Water Level History</h5>
+              <!-- Visualization or chart for water level history (you can replace this with your actual visualization) -->
+              <img
+                src="assets/history-graph.png"
+                class="img-fluid"
+                alt="Water Level History Chart"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end of dashboard -->
+
+    <!-- Footer Section -->
+    <footer class="bg-dark text-light text-center py-2">
+      <p>COPYRIGHT 2024 | FLOODWISE X UTHM | FINAL YEAR STUDENT PROJECT.</p>
+    </footer>
+    <!-- footer end -->
+
+    <!-- Water level info -->
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

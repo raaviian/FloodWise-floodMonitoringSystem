@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+      import {
+        getDatabase,
+        set,
+        ref,
+      } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+      import {
+        getAuth,
+        createUserWithEmailAndPassword,
+      } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyCPuXNVOmWX3OpkcR7Y9qh0wAETCxgmVM8",
+        authDomain: "floodwise-backend.firebaseapp.com",
+        databaseURL:
+          "https://floodwise-backend-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "floodwise-backend",
+        storageBucket: "floodwise-backend.appspot.com",
+        messagingSenderId: "232729649842",
+        appId: "1:232729649842:web:1b653695b09d142dfa9fab",
+        measurementId: "G-N5082RR7PG",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase();
+      const auth = getAuth(app);
+
+      // JS logic
+      let emailInp = document.getElementById("emailInp");
+      let passInp = document.getElementById("passwordInp");
+      let FnameInp = document.getElementById("fnameInp");
+      let LnameInp = document.getElementById("lnameInp");
+      let MainForm = document.getElementById("MainForm");
+
+      let RegisterUser = (evt) => {
+        evt.preventDefault();
+
+        createUserWithEmailAndPassword(auth, emailInp.value, passInp.value)
+          .then((credentials) => {
+            // Store user data, including first name, in the database
+            set(ref(db, `userAuthList/${credentials.user.uid}`), {
+              firstname: FnameInp.value,
+              lastname: LnameInp.value,
+              // Add any other user data you want to store
+            });
+
+            const successModal = new bootstrap.Modal(
+              document.getElementById("successModal")
+            );
+            successModal.show();
+
+            setTimeout(() => {
+              window.location.href = "login.html";
+            }, 2500);
+          })
+          .catch((error) => {
+            console.error(error);
+            alert(error.message);
+          });
+      };
+
+      MainForm.addEventListener("submit", RegisterUser);
+    </script>
+  </body>
+</html>

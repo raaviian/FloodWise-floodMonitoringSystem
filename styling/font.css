@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "YourFontName";
+  src: url("font/Barlow/Barlow-Light.ttf") format("truetype"); /* Update the path and format accordingly */
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "Barlow", sans-serif; /* Apply your custom font to the entire page */
+}
